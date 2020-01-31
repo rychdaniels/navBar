@@ -17,12 +17,19 @@
             {{ item.nombre }}
           </a>
           <div *ngIf="item.menus" class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">{{ item.menus[0].nombre }}</a>
-            <a class="dropdown-item" href="#">{{ item.menus[1].nombre }}</a>
+            <li *ngFor="let menu of item.menus">
+              <a class="dropdown-item" href="#">{{ menu.nombre }}</a>
+
+              
+            </li>
+          </div>
+
+
+          
+        </li>
+
             
          
-          </div>
-        </li>
         
         
         
