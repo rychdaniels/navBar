@@ -8,9 +8,11 @@ import { InformacionService } from '../services/informacion.service';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
+
+
 export class MenuComponent implements OnInit {
 
-  constructor( public infoMenuService: InformacionService ) { }
+  constructor( public infoMenuService: InformacionService ) {  }
 
   ngOnInit() {
   }
