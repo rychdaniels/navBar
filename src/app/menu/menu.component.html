@@ -5,37 +5,35 @@
     </button>
   
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-
-        <!-- <li class="nav-item active"  *ngFor="let item of infoMenuService.info.menusroots">
-        <a class="nav-link" href="#"> {{ item.nombre }}  </a>
-
-        </li> -->
-
+      <ul class="navbar-nav mr-auto">       
         <li class="nav-item dropdown" *ngFor="let item of infoMenuService.info.menusroots">
           <a  class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{ item.nombre }}
           </a>
+
+
+
+
           <ul *ngIf="item.menus" class="dropdown-menu">
-            <li class="nav-item dropdown" *ngFor=" let menu of item.menus; let i = index"> 
+            <li class="nav-item dropdown" *ngFor=" let menu of item.menus"> 
               <a  class="dropdown-item" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {{ menu.nombre }}
               </a>  
-              <ul *ngIf="menu.menus" >
-                <li>{{infoMenuService.info.menusroots[0].menus[1].menus[0].nombre}}</li>
+              <ul *ngIf="menu.menus">                
+                <li class="nav-item" *ngFor="let menus of menu.menus">
+                  
+                  <a  class="dropdown-item" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ menus.nombre }}
+              </a>
+                </li>
               </ul> 
-                     
             </li>
           </ul>
 
 
-          
-        </li>
 
-            
-         
-        
-        
+
+        </li>
         
       </ul>
       
