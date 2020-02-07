@@ -14,15 +14,22 @@
           {{ item.nombre }}
         </a>
         
-        <ul *ngIf="item.menus" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        <ul  class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        <ng-template #templateRecursivo >
+
           <li [ngClass]="{'dropdown-submenu': item.menus.length > '0'}" *ngFor="let submenu of item.menus"><a [ngClass]="{'dropdown-item dropdown-toggle': item.menus.length > '0'}" data-toggle="dropdown" href="#">{{ submenu.nombre }}</a>
-            <ul class="dropdown-menu" *ngIf="submenu.menus">
+            <ul class="dropdown-menu" *ngIf="submenu.menus?.length > 0">
+              
               <a class="dropdown-item" href="#"  *ngFor="let rama of submenu.menus">{{ rama.nombre }}</a>
               
               
             </ul>
           </li>
+        </ng-template>
+
+        <ng-container *ngTemplateOutlet="templateRecursivo; context:{ $implicit: rama?.menus }"></ng-container>
         </ul>
+
       </li>
 
 
