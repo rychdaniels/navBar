@@ -9,28 +9,35 @@
       <!-- <li class="nav-item">
         <a class="nav-link" href="#">Link 1</a>
       </li> -->
-      <li class="nav-item dropdown" *ngFor="let item of infoMenuService.info.menusroots">      
-        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      
+      <ng-template #templateRecursivo let-info>
+
+      <li class="nav-item dropdown" *ngFor="let item of info">      
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {{ item.nombre }}
         </a>
         
-        <ul  class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-        <ng-template #templateRecursivo >
+        <ul *ngIf="item.menus?.length > 0" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        
+          
+            <li [ngClass]="{'dropdown-submenu': item.menus.length > '0'}" *ngFor="let submenu of item.menus"><a [ngClass]="{'dropdown-item dropdown-toggle': item.menus.length > '0'}" data-toggle="dropdown" href="#">{{ submenu.nombre }}</a>
+              <ul class="dropdown-menu" *ngIf="submenu.menus?.length > 0">
+                
+                <a class="dropdown-item" href="#"  *ngFor="let rama of submenu.menus">{{ rama.nombre }}</a>
+                
+                
+                <ng-container *ngTemplateOutlet="templateRecursivo; context:{ $implicit: submenu.menus }"></ng-container>
+                </ul>
+                </li>
+                
+          
 
-          <li [ngClass]="{'dropdown-submenu': item.menus.length > '0'}" *ngFor="let submenu of item.menus"><a [ngClass]="{'dropdown-item dropdown-toggle': item.menus.length > '0'}" data-toggle="dropdown" href="#">{{ submenu.nombre }}</a>
-            <ul class="dropdown-menu" *ngIf="submenu.menus?.length > 0">
-              
-              <a class="dropdown-item" href="#"  *ngFor="let rama of submenu.menus">{{ rama.nombre }}</a>
-              
-              
-            </ul>
-          </li>
-        </ng-template>
-
-        <ng-container *ngTemplateOutlet="templateRecursivo; context:{ $implicit: rama?.menus }"></ng-container>
+          
         </ul>
-
+          
       </li>
+      </ng-template>
+      <ng-container *ngTemplateOutlet="templateRecursivo; context:{ $implicit: info }"></ng-container>
 
 
     </ul>
@@ -79,3 +86,19 @@
       
     </div>
   </nav> -->
+
+  
+  <!-- <ul>
+    <ng-container *ngTemplateOutlet="recursive; context:{$implicit: info}"> </ng-container>
+  </ul>
+  <ng-template #recursive let-info> 
+    <li *ngFor="let item of info">
+      {{item.nombre}}
+      <ul *ngIf= "item.menus?.length > 0">
+        <ng-container *ngTemplateOutlet="recursive; context:{$implicit: item.menus}"> </ng-container>
+      </ul>
+
+    </li>
+
+
+  </ng-template>  -->

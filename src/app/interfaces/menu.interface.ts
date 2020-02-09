@@ -1,6 +1,4 @@
-export interface RootObject{
-  menusroots?: Menusroot[];
-}
+
 
 export interface Menusroot {
   id?: number;
