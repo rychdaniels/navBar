@@ -1,41 +1,34 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" href="#">Menu Recursivo</a>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav mr-auto" >     
-      
-      
+    <ul class="navbar-nav mr-auto" >   
       
       <ng-template #templateRecursivo let-info>
-      <li class="nav-item dropdown" *ngFor="let item of info;let i = index">
-             
-        <a class="dropdown-item" [ngClass]="{'dropdown-toggle': item.menus}"href="{{item.url}}" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          {{ item.nombre }} 
+        <li class="nav-item dropdown dropdown-submenu" *ngFor="let item of info; let i = index">
+              
+          <a class="dropdown-item" [ngClass]="{'dropdown-toggle': item.menus}" href="{{item.url}}" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{ item.nombre }}
+          </a>
           
-          
-        </a>
-        
-        <ul *ngIf="item.menus?.length > 0" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          
-          
-            <li [ngClass]="{'dropdown-submenu': item.menus.length > '0'}" *ngFor="let submenu of item.menus; let j = index">
-             
-              <a  class="dropdown-item" [ngClass]="{'dropdown-toggle': submenu.menus}" data-toggle="dropdown" href="#">{{ submenu.nombre }}</a>
-              <ul class="dropdown-menu" *ngIf="submenu.menus?.length > 0">                
+          <ul *ngIf="item.menus?.length > 0" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            
+            
+              <li [ngClass]="{'dropdown-submenu': item.menus.length > '0'}" *ngFor="let submenu of item.menus">
+              
+                <a class="dropdown-item" [ngClass]="{'dropdown-toggle': submenu.menus}" data-toggle=" "  href="#">{{ submenu.nombre }}</a>
                 
-                
-                <ng-container *ngTemplateOutlet="templateRecursivo; context:{ $implicit: submenu.menus }"></ng-container>
+                <ul class="dropdown-menu" *ngIf="submenu.menus?.length > 0">
+                  <ng-container *ngTemplateOutlet="templateRecursivo; context:{ $implicit: submenu.menus }"></ng-container>
                 </ul>
-                </li>
-                
-          
 
-          
-        </ul>
-          
-      </li>
+              </li>
+
+          </ul>
+            
+        </li>
       </ng-template>
 
  
@@ -46,62 +39,3 @@
     </ul>
   </div>
 </nav>
-
-
-<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Menu</a>
-    
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">      
-      <ul class="navbar-nav mr-auto">       
-
-        
-        <li class="nav-item dropdown" *ngFor="let item of infoMenuService.info.menusroots">
-          <a  class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{ item.nombre }}
-          </a>
-
-
-
-
-          <ul *ngIf="item.menus" class="dropdown-menu">
-            <li class="nav-item dropdown" *ngFor=" let menu of item.menus"> 
-              <a  class="dropdown-item" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{ menu.nombre }}
-              </a>  
-              <ul *ngIf="menu.menus">                
-                <li class="nav-item dropdown" *ngFor="let menus of menu.menus">
-                  
-                  <a  class="dropdown-item" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                   {{ menus.nombre }}
-                  </a>
-                </li>
-              </ul> 
-            </li>
-          </ul>
-
-
-
-
-        </li>
-        
-      </ul>
-      
-    </div>
-  </nav> -->
-
-  
-  <!-- <ul>
-    <ng-container *ngTemplateOutlet="recursive; context:{$implicit: info}"> </ng-container>
-  </ul>
-  <ng-template #recursive let-info> 
-    <li *ngFor="let item of info">
-      {{item.nombre}}
-      <ul *ngIf= "item.menus?.length > 0">
-        <ng-container *ngTemplateOutlet="recursive; context:{$implicit: item.menus}"> </ng-container>
-      </ul>
-
-    </li>
-
-
-  </ng-template>  -->

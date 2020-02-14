@@ -1,20 +1,41 @@
-.dropdown-submenu{
+
+li.nav-item.dropdown.dropdown-submenu,
+li.dropdown-submenu{
     position: relative;
 }
-.dropdown-submenu a::after{
+
+/* Cambiar el color del texto del menu de navegacion */
+.collapse > ul.navbar-nav > li.nav-item.dropdown.dropdown-submenu > a{
+    color: #fff;
+    font-size: 19px;
+    font-weight: 20px;
+    text-shadow: 5px -3px 5px #000000;
+}
+
+/* Cambiar el color de fondo del menu de navegación */
+.navbar{
+    /* background: rgb(48, 77, 240); */
+    background: rgb(238, 46, 39);
+    /* background: rgb(3, 187, 3); */
+    /* background: rgb(240, 48, 144); */
+    
+}
+
+li.dropdown-submenu a::after{
     transform: rotate(-90deg);
     position: absolute;
     right: 3px;
     top: 40%;
 }
-.dropdown-submenu:hover .dropdown-menu{
+
+li.dropdown-submenu:hover > ul.dropdown-menu {
     display: flex;
     flex-direction: column;
     position: absolute !important;
     margin-top: -30px;
     left: 100%;
-    
 }
+
 @media (max-width: 992px) {
     .dropdown-menu{
         width: 50%;
@@ -24,17 +45,13 @@
     }
 }
 
-/* .navbar{
-    background: #9FFF33;
-} */
-
 .dropdown-item:hover{
-    background: #007BFF;
-    border-radius: 12px;
-    color: #ffff;
+    background-color: transparent;
+    text-shadow: 5px -3px 5px #BCBCBC;
+
 }
 .dropdown-item:focus{
-    background: #007BFF;
-    border-radius: 12px;
-    color: #ffff;
+    background-color: transparent;
+    text-shadow: 5px -3px 5px #BCBCBC;
+
 }

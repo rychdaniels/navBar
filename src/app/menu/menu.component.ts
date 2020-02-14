@@ -14,10 +14,11 @@ import data from '../../assets/data.json';
 })
 
 
+
+
 export class MenuComponent implements OnInit {
   // Se guarda la informacion de los menus
   public info: Menusroot[]= data.menusroots;
-   
   
   constructor( public infoMenuService: InformacionService ) { 
     // this.info = infoMenuService.info;
@@ -25,7 +26,12 @@ export class MenuComponent implements OnInit {
     
    }
 
+  
   ngOnInit() {
+  }
+
+  darClick(){
+    alert('click');
   }
 
 }
